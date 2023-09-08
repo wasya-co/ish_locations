@@ -1,0 +1,19 @@
+
+ish_locations.locations_show:
+  path: "/locations/{location_slug}"
+  defaults:
+    _controller: '\Drupal\ish_locations\Controller\LocationsController::show'
+    custom_arg: 2013
+  requirements:
+    _permission: 'access content'
+  options:
+    parameters:
+      location_slug:
+
+ish_locations.locations_index:
+  path: '/locations'
+  defaults:
+    _controller: '\Drupal\ish_locations\Controller\LocationsController::index'
+  requirements:
+    _permission: 'access content'
+
