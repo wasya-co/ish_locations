@@ -1,4 +1,4 @@
-name: ish_locatins
+name: ish_drupal_module
 type: module
 version: VERSION
 core_version_requirement: ^9

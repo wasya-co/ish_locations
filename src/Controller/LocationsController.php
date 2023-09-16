@@ -1,6 +1,6 @@
 <?
 
-namespace Drupal\ish_locations\Controller;
+namespace Drupal\ish_drupal_module\Controller;
 
 use Drupal\node\NodeInterface;
 use Drupal\Core\Controller\ControllerBase;
