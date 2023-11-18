@@ -6,15 +6,15 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Layout\LayoutDefault;
 use Drupal\Core\Plugin\PluginFormInterface;
 
-class TwocolLayout extends LayoutDefault implements PluginFormInterface {
+class OnecolAnywidthLayout extends LayoutDefault implements PluginFormInterface {
 
   /**
    * {@inheritdoc}
   **/
   public function defaultConfiguration() {
     return parent::defaultConfiguration() + [
-      'extra_classes' => '',
-      'label' => '',
+      'extra_classes' => 'fullwidth',
+      'label' => '1col-any',
     ];
   }
 
