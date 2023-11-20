@@ -1,6 +1,6 @@
 <?
 
-namespace Drupal\ish_drupal_module\Layout;
+namespace Drupal\wco_drupal_module\Layout;
 
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Layout\LayoutDefault;

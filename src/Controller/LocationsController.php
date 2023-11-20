@@ -1,6 +1,6 @@
 <?
 
-namespace Drupal\ish_drupal_module\Controller;
+namespace Drupal\wco_drupal_module\Controller;
 
 use Drupal\node\NodeInterface;
 use Drupal\Core\Controller\ControllerBase;
@@ -34,7 +34,7 @@ class LocationsController extends ControllerBase {
     // var_dump($location->title->value);
 
     return [
-      '#theme'    => 'ish_locations_show',
+      '#theme'    => 'wco_locations_show',
       '#location' => $location,
       '#request'  => $request,
     ];
