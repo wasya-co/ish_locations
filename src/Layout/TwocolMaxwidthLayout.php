@@ -1,12 +1,15 @@
 <?
 
-namespace Drupal\wco_drupal_module\Layout;
+namespace Drupal\ish_drupal_module\Layout;
 
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Layout\LayoutDefault;
 use Drupal\Core\Plugin\PluginFormInterface;
 
-class TwocolLayout extends LayoutDefault implements PluginFormInterface {
+/**
+ * @deprecated, use Fullwidth
+**/
+class TwocolMaxwidthLayout extends LayoutDefault implements PluginFormInterface {
 
   /**
    * {@inheritdoc}
@@ -14,7 +17,7 @@ class TwocolLayout extends LayoutDefault implements PluginFormInterface {
   public function defaultConfiguration() {
     return parent::defaultConfiguration() + [
       'extra_classes' => '',
-      'label' => '',
+      'label' => '2col-maxwidth',
     ];
   }
 

@@ -2,4 +2,6 @@
 0.0.0 - 2023-09-xx - probably just testing locations
 0.1.0 - 2023-09-15 - renamed to ish_drupal_module
         2023-11-20 - renamed to wco_drupal_module, what is in here?
+        2023-11-18 - 1col-anywidth, 2col-anywidth
+                     however, this resides in ish_drupal_module, so trash.
 
