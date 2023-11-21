@@ -17,3 +17,11 @@ ish_drupal_module.locations_index:
   requirements:
     _permission: 'access content'
 
+ish_drupal_module.contrbuted_post_form:
+  path: '/contributed_posts'
+  defaults:
+    _title: 'New Contributed Post'
+    _form: '\Drupal\ish_drupal_module\Form\ContributedPostForm'
+  requirements:
+    # _permission: 'create contributed_post content'
+    _access: 'TRUE'

@@ -4,3 +4,5 @@
         2023-11-18 - 1col-anywidth, 2col-anywidth
 0.2.1 - 2023-11-20 - reset well.
 
+0.3.0 :: 2023-11-21 :: POST /contributed_posts with jwt but it really, really doesn't work
+
