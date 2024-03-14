@@ -40,6 +40,39 @@
 function ish_drupal_module_theme($existing, $type, $theme, $path) {
 
   return [
+
+    /**
+     * From: https://www.drupal.org/docs/creating-modules/creating-custom-blocks/create-a-custom-block
+    **/
+    'hello_block' => [
+      'variables' => [
+        'active_tab' => NULL,
+        'body_text' => NULL,
+        'tabs' => [],
+      ],
+    ],
+
+    'menu_cities_mini' => [
+      'template' => 'index_mini',
+      'path' => $path . '/templates/cities',
+      'variables' => [
+        'cities' => [],
+      ],
+    ],
+
+    'ish_cities_show' => [
+      'render element' => 'requirements',
+      'template' => 'show',
+      'path' => $path . '/templates/cities',
+      'variables' => [
+        'city' => NULL,
+        'articles' => [],
+        'tmp' => NULL,
+        'nids' => [],
+        'request' => NULL,
+      ],
+    ],
+
     'ish_locations_show' => [
       'render element' => 'requirements',
       'template' => 'show',

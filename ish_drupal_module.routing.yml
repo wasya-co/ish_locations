@@ -1,4 +1,15 @@
 
+ish_drupal_module.cities_show:
+  path: "/cities/travel-to/{city_slug}"
+  defaults:
+    _controller: '\Drupal\ish_drupal_module\Controller\CitiesController::show'
+    # custom_arg: 2013
+  requirements:
+    _permission: 'access content'
+  options:
+    parameters:
+      city_slug:
+
 ish_drupal_module.locations_show:
   path: "/locations/{location_slug}"
   defaults:

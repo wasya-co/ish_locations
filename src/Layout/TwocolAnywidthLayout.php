@@ -14,7 +14,8 @@ class TwocolAnywidthLayout extends LayoutDefault implements PluginFormInterface 
   public function defaultConfiguration() {
     return parent::defaultConfiguration() + [
       'extra_classes' => 'fullwidth',
-      'label' => '2col-any',
+      // 'label' => '2col-any',
+      'label' => 'layout_twocol_any',
     ];
   }
 

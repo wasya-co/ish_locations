@@ -1,0 +1,8 @@
+
+<b>travel-to cities:</b>
+{# {{ dump( cities ) }} #}
+<ul>
+  {% for key, city in cities %}
+    <li><a href='/cities/travel-to/{{ city.field_slug.value }}'>{{ city.title.value }}</a></li>
+  {% endfor %}
+</ul>

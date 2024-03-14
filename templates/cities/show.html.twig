@@ -1,0 +1,13 @@
+
+<h1>{{ city.title.value }}</h1>
+
+<h5>Night clubs ({{ night_clubs|length }}):</h5>
+
+<h5>Articles ({{ articles|length }}):</h5>
+{% for article in articles %}
+  {{ article }}
+{% endfor %}
+
+{# <b>nids:</b>{{ dump( nids ) }} #}
+{# <b>city:</b>{{ dump( city ) }} #}
+
