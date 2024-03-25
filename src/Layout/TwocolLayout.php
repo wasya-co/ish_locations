@@ -6,7 +6,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Layout\LayoutDefault;
 use Drupal\Core\Plugin\PluginFormInterface;
 
-class TwocolAnywidthLayout extends LayoutDefault implements PluginFormInterface {
+class TwocolLayout extends LayoutDefault implements PluginFormInterface {
 
   /**
    * {@inheritdoc}
@@ -14,9 +14,7 @@ class TwocolAnywidthLayout extends LayoutDefault implements PluginFormInterface 
   public function defaultConfiguration() {
     return parent::defaultConfiguration() + [
       'extra_classes' => 'fullwidth',
-      'col1_classes' => 'col-sm-12 col-md-6',
-      'col2_classes' => 'col-sm-12 col-md-6',
-      'label' => '2col-any',
+      'label' => '2col',
     ];
   }
 
@@ -35,16 +33,6 @@ class TwocolAnywidthLayout extends LayoutDefault implements PluginFormInterface 
       '#title' => $this->t('Extra classes'),
       '#default_value' => $configuration['extra_classes'],
     ];
-    $form['col1_classes'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('col1 classes'),
-      '#default_value' => $configuration['col1_classes'],
-    ];
-    $form['col2_classes'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('col2 classes'),
-      '#default_value' => $configuration['col2_classes'],
-    ];
     return $form;
   }
 
@@ -60,8 +48,6 @@ class TwocolAnywidthLayout extends LayoutDefault implements PluginFormInterface 
   **/
   public function submitConfigurationForm(array &$form, FormStateInterface $form_state) {
     $this->configuration['extra_classes'] = $form_state->getValue('extra_classes');
-    $this->configuration['col1_classes'] = $form_state->getValue('col1_classes');
-    $this->configuration['col2_classes'] = $form_state->getValue('col2_classes');
     $this->configuration['label']         = $form_state->getValue('label');
   }
 
