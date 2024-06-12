@@ -30,13 +30,40 @@ class ContributedPostForm extends FormBase {
       '#type' => 'textfield',
       '#title' => $this->t('Post Title'),
     ];
-    $form['jwt_token'] = [
-      '#type' => 'textarea',
-      '#title' => $this->t('jwt_token'),
-    ];
+    // $form['jwt_token'] = [
+    //   '#type' => 'textarea',
+    //   '#title' => $this->t('jwt_token'),
+    // ];
     $form['body'] = [
-      '#type' => 'text',
+      '#type' => 'textarea',
       '#title' => $this->t('Post Body'),
+    ];
+
+    $options = array(
+      NULL => '',
+      '1' => 'one',
+      '2' => 'two',
+      '3' => 'three',
+    );
+    $options = array(
+      NULL => '',
+    );
+    $vid = 'tagscontrib';
+    $terms = \Drupal::entityTypeManager()
+                ->getStorage('taxonomy_term')
+                ->loadByProperties([
+                  'vid' => $vid,
+             ]);
+
+    foreach ($terms as $term) {
+      $options[$term->id()] = $term->getName();
+    }
+    $form['tag_contrib'] = [
+      '#type' => 'select',
+      '#title' => 'Tags Contrib',
+      '#description' => 'some descr',
+      // '#multiple' => true,
+      '#options' =>  $options,
     ];
     $form['actions']['#type'] = 'actions';
     $form['actions']['submit'] = [
@@ -60,26 +87,31 @@ class ContributedPostForm extends FormBase {
    * {@inheritdoc}
   **/
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    // $this->messenger()->addStatus($this->t('Your phone number is @number', ['@number' => $form_state->getValue('phone_number')]));
+    // $this->messenger()->addStatus($this->t('Your phone number is @number',
+    //   [ '@number' => $form_state->getValue('phone_number') ]
+    // ));
 
     // Create file object from remote URL.
     // $data = file_get_contents('https://www.drupal.org/files/druplicon.small_.png');
     // $file = file_save_data($data, 'public://druplicon.png', FILE_EXISTS_REPLACE);
 
-    $jwt_token = $form_state->getValue('jwt_token');
-    echo '+++jwt_token: ';
-    echo $jwt_token ;
+    // $jwt_token = $form_state->getValue('jwt_token');
+    // echo '+++jwt_token: ';
+    // echo $jwt_token ;
 
-    $this_key = '<>';
-    $decoded = JWT::decode($jwt_token, $this_key);
-    echo '+++jwt_token decoded: ';
-    echo $decoded ;
+    // $this_key = '<>';
+    // $decoded = JWT::decode($jwt_token, $this_key);
+    // echo '+++jwt_token decoded: ';
+    // echo $decoded ;
 
 
     // Create node object with attached file.
     $node = Node::create([
       'type'        => 'contributed_post',
       'title'       => $form_state->getValue('title'),
+      'field_tag_contrib' => [
+        ['target_id' => $form_state->getValue('tag_contrib')]
+      ],
       // 'field_image' => [
       //   'target_id' => $file->id(),
       //   'alt' => 'Hello world',
@@ -88,8 +120,9 @@ class ContributedPostForm extends FormBase {
     ]);
     $node->save();
 
-    var_dump($jwt_token);
-    exit(0);
+    $this->messenger()->addStatus(
+      $this->t('Than you for your submission. We will let you know once this article is approved.')
+    );
 
   }
 
