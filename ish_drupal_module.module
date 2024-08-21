@@ -58,3 +58,21 @@ function ish_drupal_module_theme($existing, $type, $theme, $path) {
   ];
 
 }
+
+
+function ish_drupal_module_entity_form_display_alter(Drupal\Core\Entity\Entity\EntityFormDisplay &$form_display, array $context) {
+  if (in_array('authenticated', \Drupal::currentUser()->getRoles()) &&
+      $context['entity_type'] === 'node' &&
+      $context['bundle'] === 'aphorism') {
+    $storage = \Drupal::entityTypeManager()->getStorage('entity_form_display');
+    $differentDisplay = $storage->load("{$context['entity_type']}.{$context['bundle']}.contribute"); // 'my_form_display' was created via /admin/structure/display-modes/form
+    if ($differentDisplay) {
+      $form_display = $differentDisplay;
+    }
+  }
+}
+
+
+// function ish_drupal_module_entity_type_build(array &$entity_types) {
+//   $entity_types['aphorism']->setFormClass('contribute', 'Drupal\aphorism\ContributeForm');
+// }

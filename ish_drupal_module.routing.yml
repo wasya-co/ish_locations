@@ -1,4 +1,26 @@
 
+ish_drupal_module.aphorisms_index:
+  path: "/aphorisms"
+  defaults:
+    # _form: '\Drupal\ish_drupal_module\Form\AphorismsForm'
+    _controller: '\Drupal\ish_drupal_module\Controller\AphorismsController::index'
+
+  requirements:
+    _permission: 'access content'
+  options:
+    parameters:
+
+ish_drupal_module.aphorisms_new:
+  path: "/aphorisms/new"
+  defaults:
+    # _form: '\Drupal\ish_drupal_module\Form\AphorismsNewForm'
+    # _controller: '\Drupal\ish_drupal_module\Controller\AphorismsController::new'
+    _entity_form: node.edit
+    _title: 'New Aphorism'
+  requirements:
+    _permission: 'access content'
+  options:
+    parameters:
 
 ish_drupal_module.locations_show:
   path: "/locations/{slug}"
