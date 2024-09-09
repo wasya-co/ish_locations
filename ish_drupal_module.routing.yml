@@ -40,6 +40,13 @@ ish_drupal_module.locations_index:
   requirements:
     _permission: 'access content'
 
+ish_drupal_module.tags_show:
+  path: '/tag/{tagname}'
+  defaults:
+    _controller: '\Drupal\ish_drupal_module\Controller\TagsController::show'
+  requirements:
+    _permission: 'access content'
+
 ish_drupal_module.users_my_edit:
   path: '/user/my-edit'
   defaults:

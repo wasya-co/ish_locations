@@ -1,5 +1,7 @@
 <?
 
+use Symfony\Component\HttpFoundation\RedirectResponse;
+
 // function ish_drupal_module_form_user_register_form_alter(&$form, $form_state, $form_id) {
 //   // $form['account']['name']['#title'] = t('First and last name');
 //   // $form['account']['name']['#description'] = t("Rewrite this about spaces, periods (.), hyphens (-) and apostrophes (').");
@@ -55,6 +57,16 @@ function ish_drupal_module_theme($existing, $type, $theme, $path) {
         // 'request' => NULL,
       ],
     ],
+
+    'tags_show' => [
+      'render element' => 'children',
+      'template' => 'show',
+      'path' => $path . '/templates/tags',
+      'variables' => [
+        'variable1' => 'One',
+        'variable2' => 'Two',
+      ],
+    ],
   ];
 
 }
@@ -76,3 +88,23 @@ function ish_drupal_module_entity_form_display_alter(Drupal\Core\Entity\Entity\E
 // function ish_drupal_module_entity_type_build(array &$entity_types) {
 //   $entity_types['aphorism']->setFormClass('contribute', 'Drupal\aphorism\ContributeForm');
 // }
+
+/* 2024-08-21 :: Doesn't work: redirects, but does not log in! */
+/* function ish_drupal_module_user_login(\Drupal\user\UserInterface $account) {
+  $response = new RedirectResponse('/user/dashboard');
+  $response->send();
+  return;
+} */
+
+/* 2024-08-21 :: and the following doesn't work either. */
+/* function ish_drupal_moduleform_alter(&$form, \Drupal\Core\Form\FormStateInterface\FormStateInterface $form_state, $form_id) {
+  if ($form_id == 'user_login_form') {
+     $form['#submit'][] = 'ish_drupal_module_submit_handler';
+  }
+}
+
+function ish_drupal_module_submit_handler($form, FormStateInterface $form_state) {
+   $url = Url::fromRoute('/user/dashboard');
+   $form_state->setRedirectUrl($url);
+} */
+
