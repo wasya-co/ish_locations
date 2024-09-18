@@ -4,7 +4,6 @@ ish_drupal_module.aphorisms_index:
   defaults:
     # _form: '\Drupal\ish_drupal_module\Form\AphorismsForm'
     _controller: '\Drupal\ish_drupal_module\Controller\AphorismsController::index'
-
   requirements:
     _permission: 'access content'
   options:
@@ -37,6 +36,13 @@ ish_drupal_module.locations_index:
   path: '/locations'
   defaults:
     _controller: '\Drupal\ish_drupal_module\Controller\LocationsController::index'
+  requirements:
+    _permission: 'access content'
+
+ish_drupal_module.tags_index:
+  path: '/tag'
+  defaults:
+    _controller: '\Drupal\ish_drupal_module\Controller\TagsController::index'
   requirements:
     _permission: 'access content'
 

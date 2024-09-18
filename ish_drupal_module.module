@@ -42,6 +42,13 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 function ish_drupal_module_theme($existing, $type, $theme, $path) {
 
   return [
+    'error_404' => [
+      'render element' => 'children',
+      'template' => 'error_404',
+      'path' => $path . '/templates',
+      'variables' => [],
+    ],
+
     'ish_users_edit' => [
       'template' => 'edit',
       'path' => $path . '/templates/users',
@@ -63,8 +70,9 @@ function ish_drupal_module_theme($existing, $type, $theme, $path) {
       'template' => 'show',
       'path' => $path . '/templates/tags',
       'variables' => [
-        'variable1' => 'One',
-        'variable2' => 'Two',
+        'tag' => null,
+        'features' => [],
+        'newsitems' => [],
       ],
     ],
   ];

@@ -1,16 +1,32 @@
 
 <div class='maxwidth'>
 
-  <p>variable1: <b>{{ variable1.name.value }}</b></p>
-  <p>variable2: {{ variable2 }}</p>
-  <p>variable3:</p>
+  {% if tag.description.value %}
+    <div class='descr mt-3 mb-3'>
+      {{ tag.description.value | raw }}
+    </div>
+  {% endif %}
 
-  <ul>
-    {% for item in variable3 %}
-      <li>
-        {{ item }}
-      </li>
-    {% endfor %}
-  </ul>
+  {% if features %}
+    <label>Features</label>
+    <div class='row'>
+      {% for item in features %}
+        <div class='col-md-3'>
+          {{ drupal_entity('node', item.nid.value, 'teaser') }}
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  {% if newsitems %}
+    <label>Newsfeed</label>
+    <div class='row'>
+      {% for item in newsitems %}
+        <div class='col-md-3'>
+          {{ drupal_entity('node', item.nid.value, 'teaser') }}
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
 
 </div>
