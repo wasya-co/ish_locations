@@ -53,6 +53,14 @@ ish_drupal_module.tags_show:
   requirements:
     _permission: 'access content'
 
+ish_drupal_module.users_dashboard:
+  path: '/user/dashboard'
+  defaults:
+    _controller: '\Drupal\ish_drupal_module\Controller\UsersController::dashboard'
+    # _form: '\Drupal\ish_drupal_module\Form\UsersEditForm'
+  requirements:
+    _permission: 'create contributed_post content'
+
 ish_drupal_module.users_my_edit:
   path: '/user/my-edit'
   defaults:
