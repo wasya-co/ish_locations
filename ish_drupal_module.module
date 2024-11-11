@@ -50,6 +50,12 @@ function ish_drupal_module_theme($existing, $type, $theme, $path) {
       'variables' => [],
     ],
 
+    'ish_users_dashboard' => [
+      'template' => 'dashboard',
+      'path' => $path . '/templates/users',
+      'variables' => [
+      ],
+    ],
     'ish_users_edit' => [
       'template' => 'edit',
       'path' => $path . '/templates/users',
@@ -57,12 +63,21 @@ function ish_drupal_module_theme($existing, $type, $theme, $path) {
       ],
     ],
     'ish_locations_show' => [
-      'render element' => 'requirements',
+      // 'render element' => 'requirements',
       'template' => 'show',
       'path' => $path . '/templates/locations',
       'variables' => [
         'location' => NULL,
         // 'request' => NULL,
+      ],
+    ],
+
+    'menu_user_authenticated' => [
+      'path' => $path . '/templates',
+      // 'render element' => 'children',
+      'template' => 'menu_user_authenticated',
+      'variables' => [
+        'testvar' => NULL,
       ],
     ],
 
@@ -105,15 +120,29 @@ function ish_drupal_module_entity_form_display_alter(Drupal\Core\Entity\Entity\E
   return;
 } */
 
-/* 2024-08-21 :: and the following doesn't work either. */
-/* function ish_drupal_moduleform_alter(&$form, \Drupal\Core\Form\FormStateInterface\FormStateInterface $form_state, $form_id) {
-  if ($form_id == 'user_login_form') {
+
+function ish_drupal_module_form_alter(&$form, $form_state, $form_id) {
+
+  $user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
+  $current_roles = \Drupal::currentUser()->getRoles();
+  // var_dump('current_roles', $current_roles);
+
+  switch($form_id) {
+    case 'node_contributed_post_edit_form':
+      if (!in_array('administrator', $current_roles)) {
+        $form['field_issue']['#access'] = false;
+        $form['revision_information']['#access'] = false;
+      }
+      break;
+
+    case 'user_login_form':
      $form['#submit'][] = 'ish_drupal_module_submit_handler';
+     break;
   }
 }
 
-function ish_drupal_module_submit_handler($form, FormStateInterface $form_state) {
-   $url = Url::fromRoute('/user/dashboard');
-   $form_state->setRedirectUrl($url);
-} */
+function ish_drupal_module_submit_handler($form, $form_state) {
+  //  $url = Url::fromRoute('/user/dashboard');
+  //  $form_state->setRedirectUrl($url);
+} // */
 
