@@ -2,6 +2,35 @@
 
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
+  // From: https://drupal.stackexchange.com/questions/11290/search-only-for-the-currently-active-language
+  function ish_drupal_module_query_node_access_alter(QueryAlterableInterface $query) {
+    $search = FALSE;
+    $node = FALSE;
+
+    // Even though we know the node alias is going to be "n", by checking for the
+    // search_index table we make sure we're on the search page. Omitting this step will
+    // break the default admin/content page.
+    foreach ($query->getTables() as $alias => $table) {
+      if ($table['table'] == 'search_index') {
+        $search = $alias;
+      }
+      elseif ($table['table'] == 'node') {
+        $node = $alias;
+      }
+    }
+
+    // Make sure we're on the search page.
+    if ($node && $search) {
+      $db_and = db_and();
+      // I guess you *could* use global $language here instead but this is safer.
+      $language = i18n_language_interface();
+      $lang = $language->language;
+
+      $db_and->condition($node . '.language', $lang, '=');
+      $query->condition($db_and);
+    }
+  }
+
 // function ish_drupal_module_form_user_register_form_alter(&$form, $form_state, $form_id) {
 //   // $form['account']['name']['#title'] = t('First and last name');
 //   // $form['account']['name']['#description'] = t("Rewrite this about spaces, periods (.), hyphens (-) and apostrophes (').");
